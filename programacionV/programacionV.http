@@ -1,0 +1,43 @@
+@programacionV_HostAddress = http://localhost:5156
+
+### 1. Crear un Programa Académico
+POST {{programacionV_HostAddress}}/api/programaacademico
+Content-Type: application/json
+
+{
+  "nombre": "Ingeniería de Sistemas",
+  "codigo": "ING-SIS",
+  "facultad": "Ingeniería"
+}
+
+### 2. Obtener todos los Programas Académicos (con estudiantes opcional)
+GET {{programacionV_HostAddress}}/api/programaacademico?includeEstudiantes=true
+Accept: application/json
+
+### 3. Obtener un Programa Académico por ID
+GET {{programacionV_HostAddress}}/api/programaacademico/1
+Accept: application/json
+
+### 4. Crear un Estudiante asociado al Programa Académico (ID: 1)
+POST {{programacionV_HostAddress}}/api/estudiante
+Content-Type: application/json
+
+{
+  "nombres": "Juan",
+  "apellidos": "Pérez",
+  "documento": "123456789",
+  "email": "juan.perez@example.com",
+  "programaAcademicoId": 1
+}
+
+### 5. Obtener todos los Estudiantes
+GET {{programacionV_HostAddress}}/api/estudiante
+Accept: application/json
+
+### 6. Filtrar Estudiantes por Programa Académico
+GET {{programacionV_HostAddress}}/api/estudiante?programaId=1
+Accept: application/json
+
+### 7. Obtener un Estudiante por ID
+GET {{programacionV_HostAddress}}/api/estudiante/1
+Accept: application/json

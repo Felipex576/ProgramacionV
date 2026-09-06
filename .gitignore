@@ -1,0 +1,50 @@
+## .NET / C# Build outputs
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+*.dll
+*.exe
+*.pdb
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.userprefs
+
+## Visual Studio
+.vs/
+*.csproj.user
+*.vcxproj.user
+*.Publish.xml
+*.pubxml
+*.pubxml.user
+
+## Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+## JetBrains Rider / IntelliJ
+.idea/
+*.DotSettings.user
+
+## Base de datos SQLite y temporales
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+## Archivos de entorno y secretos de usuario
+appsettings.Production.json
+appsettings.*.local.json
+.env
+
+## Archivos del Sistema Operativo
+.DS_Store
+Thumbs.db
+desktop.ini
