@@ -41,6 +41,20 @@ public class EstudianteController : ControllerBase
         return Ok(estudiante);
     }
 
+    // GET: api/Estudiante/telefono/3001234567
+    [HttpGet("telefono/{telefono}")]
+    public async Task<ActionResult<Estudiante>> GetEstudianteByTelefono(string telefono)
+    {
+        var estudiante = await _estudianteRepository.GetByTelefonoAsync(telefono);
+
+        if (estudiante == null)
+        {
+            return NotFound(new { mensaje = $"Estudiante con teléfono '{telefono}' no encontrado." });
+        }
+
+        return Ok(estudiante);
+    }
+
     // POST: api/Estudiante
     [HttpPost]
     public async Task<ActionResult<Estudiante>> CreateEstudiante(Estudiante estudiante)

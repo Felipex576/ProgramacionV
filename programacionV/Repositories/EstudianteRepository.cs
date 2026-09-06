@@ -32,6 +32,13 @@ public class EstudianteRepository : IEstudianteRepository
             .FirstOrDefaultAsync(e => e.Id == id);
     }
 
+    public async Task<Estudiante?> GetByTelefonoAsync(string telefono)
+    {
+        return await _context.Estudiantes
+            .Include(e => e.ProgramaAcademico)
+            .FirstOrDefaultAsync(e => e.Telefono == telefono);
+    }
+
     public async Task<Estudiante> AddAsync(Estudiante estudiante)
     {
         estudiante.ProgramaAcademico = null; // Evitar que EF intente re-insertar o mutar la entidad navegación
