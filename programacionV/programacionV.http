@@ -41,3 +41,7 @@ Accept: application/json
 ### 7. Obtener un Estudiante por ID
 GET {{programacionV_HostAddress}}/api/estudiante/1
 Accept: application/json
+
+### 8. Consultar un Estudiante por Documento
+GET {{programacionV_HostAddress}}/api/estudiante/documento/1020304050
+Accept: application/json

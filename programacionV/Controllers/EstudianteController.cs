@@ -41,6 +41,20 @@ public class EstudianteController : ControllerBase
         return Ok(estudiante);
     }
 
+    // GET: api/Estudiante/documento/1020304050
+    [HttpGet("documento/{documento}")]
+    public async Task<ActionResult<Estudiante>> GetEstudianteByDocumento(string documento)
+    {
+        var estudiante = await _estudianteRepository.GetByDocumentoAsync(documento);
+
+        if (estudiante == null)
+        {
+            return NotFound(new { mensaje = $"Estudiante con documento '{documento}' no encontrado." });
+        }
+
+        return Ok(estudiante);
+    }
+
     // POST: api/Estudiante
     [HttpPost]
     public async Task<ActionResult<Estudiante>> CreateEstudiante(Estudiante estudiante)

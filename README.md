@@ -134,6 +134,7 @@ Una vez iniciada la aplicación, accede a la documentación interactiva en tu na
 | :--- | :--- | :--- |
 | `GET` | `/api/estudiante` | Listar todos los estudiantes (soporta `?programaId={id}`) |
 | `GET` | `/api/estudiante/{id}` | Obtener un estudiante por su ID con datos de su programa |
+| `GET` | `/api/estudiante/documento/{documento}` | Consultar un estudiante por su número de documento |
 | `POST` | `/api/estudiante` | Crear un estudiante asociado a un programa existente |
 | `PUT` | `/api/estudiante/{id}` | Actualizar datos de un estudiante |
 | `DELETE` | `/api/estudiante/{id}` | Eliminar un estudiante por su ID |
