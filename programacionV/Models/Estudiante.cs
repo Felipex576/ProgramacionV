@@ -7,6 +7,7 @@ public class Estudiante
     public string Apellidos { get; set; } = string.Empty;
     public string? Documento { get; set; }
     public string? Email { get; set; }
+    public string? Telefono { get; set; }
 
     // Clave foránea de la relación 1 a muchos
     public int ProgramaAcademicoId { get; set; }

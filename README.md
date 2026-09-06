@@ -65,6 +65,7 @@ erDiagram
         string Apellidos
         string Documento
         string Email
+        string Telefono
         int ProgramaAcademicoId FK
     }
 ```

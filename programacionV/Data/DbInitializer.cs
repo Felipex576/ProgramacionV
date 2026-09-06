@@ -45,6 +45,7 @@ public static class DbInitializer
                 Apellidos = "Pérez Gómez",
                 Documento = "1020304050",
                 Email = "juan.perez@universidad.edu",
+                Telefono = "3001234567",
                 ProgramaAcademicoId = programas[0].Id
             },
             new Estudiante
@@ -53,6 +54,7 @@ public static class DbInitializer
                 Apellidos = "Rodríguez López",
                 Documento = "1030405060",
                 Email = "maria.rodriguez@universidad.edu",
+                Telefono = "3109876543",
                 ProgramaAcademicoId = programas[0].Id
             },
             new Estudiante
@@ -61,6 +63,7 @@ public static class DbInitializer
                 Apellidos = "Martínez Silva",
                 Documento = "1040506070",
                 Email = "andres.martinez@universidad.edu",
+                Telefono = "3205551234",
                 ProgramaAcademicoId = programas[1].Id
             },
             new Estudiante
@@ -69,6 +72,7 @@ public static class DbInitializer
                 Apellidos = "Castro Díaz",
                 Documento = "1050607080",
                 Email = "laura.castro@universidad.edu",
+                Telefono = "3154449876",
                 ProgramaAcademicoId = programas[2].Id
             }
         };
