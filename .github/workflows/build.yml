@@ -1,0 +1,35 @@
+name: Build and Validate API
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    name: Compilar y validar API
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Clona el repositorio en la máquina virtual de GitHub
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      # 2. Prepara el entorno con el SDK de .NET 10
+      - name: Configurar .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      # 3. Descarga las librerías NuGet necesarias (EF Core, Scalar, SQLite, etc.)
+      - name: Restaurar dependencias
+        run: dotnet restore programacionV/programacionV.csproj
+
+      # 4. Compila la solución en modo Release asegurando que no existan errores de sintaxis o tipos
+      - name: Compilar proyecto
+        run: dotnet build programacionV/programacionV.csproj --configuration Release --no-restore
+
+      # 5. Opcional: Verifica que la imagen Docker del Desafío 1 también construya sin problemas
+      - name: Probar construcción de imagen Docker
+        run: docker build -t programacion-v:ci ./programacionV
