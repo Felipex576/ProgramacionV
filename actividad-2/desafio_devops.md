@@ -144,10 +144,87 @@ Al consultar todos los contenedores, se muestra todos los contenedores, tanto lo
 
 ## DESAFÍO 3. Construcción automática con GitHub Actions
 
+### Archivo build.yml (CI)
+
+Este archivo permite realizar la integracion Continua (CI) del proyecto de la API. En lugar de confiar únicamente en que el código compile en computadoras locales, este flujo ejecuta una máquina virtual limpia con Linux (ubuntu-latest) en los servidores de GitHub. Se descarga el repositorio con actions/checkout@v4 y prepara el entorno oficial de desarrollo instalando el SDK de .NET 10 mediante actions/setup-dotnet@v4. Luego, el flujo ejecuta una secuencia lógica de tres etapas sobre el proyecto programacionV.csproj: 
+- Resuelve y descarga todas las librerías externas con dotnet restore. 
+- Compila todo el código C# en modo optimizado (dotnet build --configuration Release --no-restore) para asegurar que no existan errores de sintaxis, tipos o referencias rotas.  
+- Valida que el Dockerfile continúe empaquetando la imagen del contenedor correctamente.
+
+```yml
+name: Build and Validate API
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    name: Compilar y validar API
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restaurar dependencias
+        run: dotnet restore programacionV/programacionV.csproj
+
+      - name: Compilar proyecto
+        run: dotnet build programacionV/programacionV.csproj --configuration Release --no-restore
+
+      - name: Probar construcción de imagen Docker
+        run: docker build -t programacion-v:ci ./programacionV
+```
+Se realiza git add, commit y push en la rama main para verificar que build.yml funcione automaticamente.
+
+![alt text](imagenes/progress_build.png)
+
+![alt text](imagenes/complete_build.png)
+
+### Añadir campo 'Sede' a ProgramaAcademico
+
+Se hace la modificacion correspondiente y se verifican los archivos afectados en programacionV
+
+![alt text](imagenes/git_status.png)
+
+Se añaden a stage, se crea el commit "Add Sede field to ProgramaAcademico" y se suben los cambios a la rama main mediante git push.
+
+![alt text](imagenes/git_push.png)
 
 
+### Comprobación del workflow
+
+Se evidencia la ejecución automática del workflow. Se puede visualizar el nombre del commit, el nombre del build y cada uno de los steps realizados y tiempo de ejecución. Los steps estan determinados el archivo .yml. El icono check verde muestra que no hubo errores en el flujo. Para mas detalle se puede desplegar cada step y verificar lo que se realizó a detalle en cada uno. 
+
+![alt text](imagenes/check_actions.png)
 
 ### Preguntas
+
 **¿Qué evento provocó la ejecución automática del workflow?**
+
+```yml
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+```
+
+El evento fue `on push` sobre la rama `main`. Al realizar git push de los cambios realizados se ejecutó el pipeline automaticamente
+
 **¿Qué ventaja tiene comprobar automáticamente que una aplicación compila después de publicar un cambio?**
+
+Permite detectar errores de forma inmediata, evitando que código roto contamine la rama principal o afecte al resto del equipo. Además, elimina el error de "compilación en local", garantizando en un entorno neutral que el proyecto siempre se mantiene en un estado funcional y listo para desplegarse.
+
 **¿Qué ocurriría con el workflow si la compilación genera un error?**
+El workflow falla y se podría identificar el error en el step `name: Compilar proyecto` para solucionarlo. 
+
+---
