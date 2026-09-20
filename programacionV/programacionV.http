@@ -7,7 +7,8 @@ Content-Type: application/json
 {
   "nombre": "Ingeniería de Sistemas",
   "codigo": "ING-SIS",
-  "facultad": "Ingeniería"
+  "facultad": "Ingeniería",
+  "sede": "Sede Principal"
 }
 
 ### 2. Obtener todos los Programas Académicos (con estudiantes opcional)

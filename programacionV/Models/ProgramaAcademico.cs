@@ -8,6 +8,7 @@ public class ProgramaAcademico
     public string Nombre { get; set; } = string.Empty;
     public string? Codigo { get; set; }
     public string? Facultad { get; set; }
+    public string? Sede { get; set; }
 
     // Relación 1 a muchos: Un programa académico tiene muchos estudiantes
     [JsonIgnore]

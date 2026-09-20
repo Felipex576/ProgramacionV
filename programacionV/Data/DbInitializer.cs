@@ -18,19 +18,22 @@ public static class DbInitializer
             {
                 Nombre = "Ingeniería de Sistemas",
                 Codigo = "ING-SIS",
-                Facultad = "Facultad de Ingeniería"
+                Facultad = "Facultad de Ingeniería",
+                Sede = "Sede Principal"
             },
             new ProgramaAcademico
             {
                 Nombre = "Medicina",
                 Codigo = "MED-01",
-                Facultad = "Facultad de Ciencias de la Salud"
+                Facultad = "Facultad de Ciencias de la Salud",
+                Sede = "Sede Salud"
             },
             new ProgramaAcademico
             {
                 Nombre = "Derecho",
                 Codigo = "DER-01",
-                Facultad = "Facultad de Ciencias Jurídicas"
+                Facultad = "Facultad de Ciencias Jurídicas",
+                Sede = "Sede Principal"
             }
         };
 
